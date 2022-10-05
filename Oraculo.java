@@ -75,7 +75,7 @@ public class Oraculo {
             
             System.out.println("n1: "+n1+" + "+"n2: "+n2+" = "+soma);
             if (soma % 2 == o) {
-            System.out.println("Ganhou.");
+            	System.out.println("Ganhou.");
             }
             else {
                 System.out.println("Perdeu.");
