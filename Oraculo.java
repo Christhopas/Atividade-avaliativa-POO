@@ -2,9 +2,10 @@
 import java.util.Random;
 import java.util.Scanner;
 import java.util.StringTokenizer;
+import javax.swing.JOptionPane;
 
 public class Oraculo {
-
+    
     String nome;
     Guerreiro guerreiro;
 
@@ -23,11 +24,7 @@ public class Oraculo {
         return st.countTokens() > 5;
     }
 
-    public String prologoIntroducao() {
-        String txt = "Olá " + guerreiro.nome + ", me chamo " + this.nome + ". Você tem " + guerreiro.vidas + " vidas."; //Prólogo da história do jogo
-        return txt;
-    }
-
+    //Levels
     public int loadLevel1() {
         Scanner t = new Scanner(System.in);
 
@@ -35,14 +32,13 @@ public class Oraculo {
         System.out.println("Advinhe um número...");
 
         int n = t.nextInt();
-        int s = g.nextInt(100) + 1;
+        int s = g.nextInt(100) + 1; //[1,99]
 
         if (n == s) {
-            System.out.println("Ganhou.");
+            prologoVencedor();
         }
         else {
             while (n != s) {
-                
                 if (n > s) {
                     System.out.println("Menor.");
                     guerreiro.vidas--;
@@ -57,6 +53,7 @@ public class Oraculo {
                 }
                 if (guerreiro.vidas == 0) {
                     System.out.println("Voce esta sem vidas.");
+                    prologoPerdedor();
                     break;
                 }
             }
@@ -67,17 +64,50 @@ public class Oraculo {
     public int loadLevel2(int o) {
 
         System.out.println("#### Level 2 ###");
-
-        int n1 = g.nextInt(6);
-        int n2 = g.nextInt(6);
-
-        if (n1+n2 % 2 == o) {
-            System.out.println("Ganhou.");
+        
+        if (o != 0 && o != 1) {
+            MsgDeErro("Valor invalido", "Digite 0[par] ou 1[impar].");
         }
         else {
-            System.out.println("Perdeu.");
+            int n1 = g.nextInt(6);
+            int n2 = g.nextInt(6);
+            int soma = n1 + n2;
+            
+            System.out.println("n1: "+n1+" + "+"n2: "+n2+" = "+soma);
+            if (soma % 2 == o) {
+            	System.out.println("Ganhou.");
+            }
+            else {
+                System.out.println("Perdeu.");
+            }
         }
         return 0;
     }
+    
+    //Prologos
+    public void prologoIntroducao() {
+        String txt = "Ola " + guerreiro.nome + ", me chamo " + this.nome + ". Voce tem " + guerreiro.vidas + " vidas."; //Prólogo da história do jogo
+        MsgDeInformacao("Introducao", txt);
+    }
+    
+    public void prologoVencedor() {
+        String txt = "Parabens " + guerreiro.nome + "! Eu, " + this.nome + ", estou feliz.";
+        MsgDeInformacao("Voce venceu!", txt);
+    }
+    
+    public void prologoPerdedor() {
+        String txt = "Lamento " + guerreiro.nome + "! Eu, " + this.nome + ", estou desapontado.";
+        MsgDeInformacao("Voce perdeu!", txt);
+    }
+    
+    //Mensagens
+    public static void MsgDeInformacao(String cabecalho, String frase){
+	JOptionPane.showMessageDialog(null, frase, cabecalho, JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    public static void MsgDeErro(String cabecalho, String frase) {
+	JOptionPane.showMessageDialog(null, frase, cabecalho,  JOptionPane.ERROR_MESSAGE);
+    }
 }
+
 
