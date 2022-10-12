@@ -1,4 +1,3 @@
-
 import java.util.Random;
 import java.util.Scanner;
 import java.util.StringTokenizer;
@@ -20,8 +19,8 @@ public class Oraculo {
     }
 
     public boolean decidirVidaExtra(String txt) {
-        StringTokenizer st = new StringTokenizer(txt);
-        return st.countTokens() > 5;
+        StringTokenizer st = new StringTokenizer(txt, " ");
+        return (st.countTokens() > 5);
     }
 
     //Levels
@@ -109,5 +108,3 @@ public class Oraculo {
 	JOptionPane.showMessageDialog(null, frase, cabecalho,  JOptionPane.ERROR_MESSAGE);
     }
 }
-
-
