@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 
 public class Guerreiro {
@@ -23,10 +22,11 @@ public class Guerreiro {
 
     public void vidaExtra() {
         System.out.println("Quer uma vida extra? Implore.");
-        String txt = t.next();
+        String txt = t.nextLine();
         
         if (oraculo.decidirVidaExtra(txt))
             this.vidas++;
+        else 
+            System.out.println("Voce e indigno de piedade!");
     }
 }
-
