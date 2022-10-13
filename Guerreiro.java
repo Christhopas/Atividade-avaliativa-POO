@@ -1,8 +1,8 @@
-
 import java.util.Scanner;
 
 public class Guerreiro {
 
+    Oraculo oraculo = new Oraculo();
     String nome;
     int vidas;
 
@@ -20,11 +20,13 @@ public class Guerreiro {
         return vidas;
     }
 
-    public String vidaExtra() {
+    public void vidaExtra() {
         System.out.println("Quer uma vida extra? Implore.");
-        String txt = t.next();
-        //Chamar o método decidirVidaExtra(String txt)
-        return txt;
+        String txt = t.nextLine();
+        
+        if (oraculo.decidirVidaExtra(txt))
+            this.vidas++;
+        else 
+            System.out.println("Voce e indigno de piedade!");
     }
 }
-
