@@ -33,10 +33,6 @@ public class Oraculo {
         int n = t.nextInt();
         int s = g.nextInt(100) + 1; //[1,99]
 
-        if (n == s) {
-            prologoVencedor();
-        }
-        else {
             while (n != s) {
                 if (n > s) {
                     System.out.println("Menor.");
@@ -56,6 +52,9 @@ public class Oraculo {
                     break;
                 }
             }
+	    if (n == s) {
+            prologoVencedor();
+       	    }
         }
         return 0;
     }
