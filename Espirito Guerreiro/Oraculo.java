@@ -32,7 +32,7 @@ public class Oraculo {
 
         int n = t.nextInt();
         int s = g.nextInt(100) + 1; //[1,99]
-
+        
             while (n != s) {
                 if (n > s) {
                     System.out.println("Menor.");
@@ -49,14 +49,13 @@ public class Oraculo {
                 if (guerreiro.vidas == 0) {
                     System.out.println("Voce esta sem vidas.");
                     prologoPerdedor();
-                    break;
+                    return 0;
                 }
             }
 	    if (n == s) {
             prologoVencedor();
        	    }
-        }
-        return 0;
+     return 0;       
     }
 
     public int loadLevel2(int o) {
@@ -107,3 +106,5 @@ public class Oraculo {
 	JOptionPane.showMessageDialog(null, frase, cabecalho,  JOptionPane.ERROR_MESSAGE);
     }
 }
+
+   
