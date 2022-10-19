@@ -1,4 +1,3 @@
-
 public class Main {
     
     public static void main(String[] args) {
@@ -7,12 +6,5 @@ public class Main {
         Oraculo oraculo = new Oraculo();
         
         oraculo.guerreiro = joao;
-        
-        joao.setNome("joao");
-        oraculo.setNome("Oraculo");
-        oraculo.setVidas();
-        System.out.println(joao.vidas);
-        oraculo.loadLevel1();
-        oraculo.loadLevel2(0);
     }
 }
