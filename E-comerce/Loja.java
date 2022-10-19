@@ -3,6 +3,8 @@ import java.util.HashMap;
 
 public class Loja {
     
+    Funcionario funcionario = new Funcionario();
+    
     HashMap<Integer, Integer> listaPedido = new HashMap<>();
 
     public void menu() {
@@ -25,16 +27,21 @@ public class Loja {
     }
     public static void main(String[] args) {
         Loja americanas = new Loja();
+        americanas.menu();
+        
+        Funcionario joao = new Funcionario();
+        Funcionario rolph = new Funcionario();
+        Funcionario paulo = new Funcionario();
+        Funcionario chris = new Funcionario();
+        americanas.funcionario = joao;
+        americanas.funcionario = rolph;
+        americanas.funcionario = chris;
+        americanas.funcionario = paulo;
         Pedido p1 = new Pedido(1, 3, 2);
         Pedido p2 = new Pedido(2, 4, 5);
         Pedido p3 = new Pedido(3, 3, 7);
-        p1.totalCalculado();
-        p2.totalCalculado();
-        p3.totalCalculado();
-        americanas.menu();
         americanas.inserirPedido(1, p1.pedidoID);
         americanas.inserirPedido(2, p2.pedidoID);
         americanas.inserirPedido(45, p3.pedidoID);
-        americanas.buscarPedido(45);
     }
 }
