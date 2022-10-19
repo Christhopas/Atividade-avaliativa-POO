@@ -6,5 +6,15 @@ public class Main {
         Oraculo oraculo = new Oraculo();
         
         oraculo.guerreiro = joao;
+        
+        joao.setNome("joao");
+        oraculo.setNome("Oraculo");
+        oraculo.setVidas();
+        System.out.println("Voce tem:   " + joao.vidas + " vidas");
+        oraculo.loadLevel1();
+        
+        if(oraculo.checkVitoria == 1) {     
+            oraculo.loadLevel2(0); // 0 para PAR e 1 para IMPAR
+        }
     }
 }
