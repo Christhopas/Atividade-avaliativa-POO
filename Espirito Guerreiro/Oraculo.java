@@ -7,6 +7,7 @@ public class Oraculo {
     
     String nome;
     Guerreiro guerreiro;
+    int checkVitoria = 0;
 
     Random g = new Random(); //g recebe a classe random
 
@@ -32,7 +33,7 @@ public class Oraculo {
 
         int n = t.nextInt();
         int s = g.nextInt(100) + 1; //[1,99]
-        
+
             while (n != s) {
                 if (n > s) {
                     System.out.println("Menor.");
@@ -49,14 +50,16 @@ public class Oraculo {
                 if (guerreiro.vidas == 0) {
                     System.out.println("Voce esta sem vidas.");
                     prologoPerdedor();
-                    return 0;
+                    break;
                 }
             }
 	    if (n == s) {
-            prologoVencedor();
+                System.out.println("Voce venceu " + guerreiro.nome);
+                prologoVencedor();
+                checkVitoria = 1;
        	    }
-     return 0;       
-    }
+        return 0;
+        }
 
     public int loadLevel2(int o) {
 
@@ -105,6 +108,4 @@ public class Oraculo {
     public static void MsgDeErro(String cabecalho, String frase) {
 	JOptionPane.showMessageDialog(null, frase, cabecalho,  JOptionPane.ERROR_MESSAGE);
     }
-}
-
-   
+} 
