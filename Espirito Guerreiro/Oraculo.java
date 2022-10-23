@@ -1,15 +1,20 @@
 import java.util.Random;
 import java.util.Scanner;
 import java.util.StringTokenizer;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class Oraculo {
     
     String nome;
     Guerreiro guerreiro;
-    int checkVitoria = 0;
+    
+    Icon icO = new ImageIcon("oraculo.png");
+    Icon icV = new ImageIcon("trofeu.png");
+    Icon icP = new ImageIcon("game_over.png");
 
-    Random g = new Random(); //g recebe a classe random
+    Random g = new Random();
 
     public void setNome(String nome) {
         this.nome = nome;
@@ -33,8 +38,7 @@ public class Oraculo {
 
         int n = t.nextInt();
         int s = g.nextInt(100) + 1; //[1,99]
-
-            while (n != s) {
+        while (n != s) {
                 if (n > s) {
                     System.out.println("Menor.");
                     guerreiro.vidas--;
@@ -53,32 +57,35 @@ public class Oraculo {
                     break;
                 }
             }
-	    if (n == s) {
-                System.out.println("Voce venceu " + guerreiro.nome);
+        if (n == s) {
                 prologoVencedor();
-                checkVitoria = 1;
+                System.out.println("Vamos parar o proximo level");
+                System.out.println("Advinhe se a soma de dois numeros sera par(0) ou impar(1)");
+                System.out.println("Digite o seu palpite: ");
+                int a = t.nextInt();
+                loadLevel2(a);
        	    }
         return 0;
         }
 
     public int loadLevel2(int o) {
-
-        System.out.println("#### Level 2 ###");
         
         if (o != 0 && o != 1) {
             MsgDeErro("Valor invalido", "Digite 0[par] ou 1[impar].");
         }
         else {
+            System.out.println("#### Level 2 ###");
+            
             int n1 = g.nextInt(6);
             int n2 = g.nextInt(6);
             int soma = n1 + n2;
             
             System.out.println("n1: "+n1+" + "+"n2: "+n2+" = "+soma);
             if (soma % 2 == o) {
-            	System.out.println("Ganhou.");
+            	prologoVencedor();
             }
             else {
-                System.out.println("Perdeu.");
+                prologoPerdedor();
             }
         }
         return 0;
@@ -87,25 +94,25 @@ public class Oraculo {
     //Prologos
     public void prologoIntroducao() {
         String txt = "Ola " + guerreiro.nome + ", me chamo " + this.nome + ". Voce tem " + guerreiro.vidas + " vidas."; //Prólogo da história do jogo
-        MsgDeInformacao("Introducao", txt);
+        MsgDeInformacao("Introducao", txt, icO);
     }
     
     public void prologoVencedor() {
         String txt = "Parabens " + guerreiro.nome + "! Eu, " + this.nome + ", estou feliz.";
-        MsgDeInformacao("Voce venceu!", txt);
+        MsgDeInformacao("Voce venceu!", txt, icV);
     }
     
     public void prologoPerdedor() {
         String txt = "Lamento " + guerreiro.nome + "! Eu, " + this.nome + ", estou desapontado.";
-        MsgDeInformacao("Voce perdeu!", txt);
+        MsgDeInformacao("Voce perdeu!", txt, icP);
     }
     
     //Mensagens
-    public static void MsgDeInformacao(String cabecalho, String frase){
-	JOptionPane.showMessageDialog(null, frase, cabecalho, JOptionPane.INFORMATION_MESSAGE);
+    public static void MsgDeInformacao(String cabecalho, String frase, Icon icon){
+	JOptionPane.showMessageDialog(null, frase, cabecalho, JOptionPane.INFORMATION_MESSAGE, icon);
     }
     
     public static void MsgDeErro(String cabecalho, String frase) {
 	JOptionPane.showMessageDialog(null, frase, cabecalho,  JOptionPane.ERROR_MESSAGE);
     }
-} 
+}
