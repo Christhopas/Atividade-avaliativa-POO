@@ -1,21 +1,19 @@
 public class Funcionario {
     
-    public String nome;
-    private int matricula;
-
-    public void getNome() {
-        System.out.println(this.nome);
-    }
+    private String nome;
+    private String cpf;
 
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-    public int getMatricula() {
-        return matricula;
+    public void getNome() {
+        System.out.println(this.nome);
     }
 
-    public void setMatricula(int matricula) {
-        this.matricula = matricula;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+    public String getCpf() {
+        return cpf;
     }
 }
