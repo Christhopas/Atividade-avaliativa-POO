@@ -1,47 +1,62 @@
-
 import java.util.HashMap;
 
 public class Loja {
     
-    Funcionario funcionario = new Funcionario();
+    //Funcionario funcionario = new Funcionario();
+    //HashMap<Integer, Integer> listaFuncionario = new HashMap<>();
     
-    HashMap<Integer, Integer> listaPedido = new HashMap<>();
+    HashMap<Integer, Pedido> listaPedido = new HashMap<>();
 
     public void menu() {
-        System.out.println("Funcoes: ");
-        System.out.println("inserirPedido()");
-        System.out.println("buscarPedido()");
-        System.out.println("removerPedido()");
+        System.out.println("metodos:");
+        System.out.println("inserirPedido(int i, Pedido p)\nbuscarPedido(int i)");
+        System.out.println("trocarPedido(int i, Pedido p)\nremoverPedido(int i)\nverLista()\nlimparLista()");
     }
-    public void inserirPedido(int i, int p) {
+    
+    public void inserirPedido(int i, Pedido p) {
         listaPedido.put(i, p);
     }
     public void buscarPedido(int i) {
         System.out.println("PedidoID: "+listaPedido.get(i));
     }
+    public void trocarPedido(int i, Pedido p){
+        listaPedido.replace(i, p);
+    }
     public void removerPedido(int i) {
         listaPedido.remove(i);
     }
-    public void limparPedido() {
+    
+    public void verLista() {
+        System.out.println(listaPedido.toString());
+    }
+    public void limparLista() {
         listaPedido.clear();
     }
+    
     public static void main(String[] args) {
-        Loja americanas = new Loja();
-        americanas.menu();
         
-        Funcionario joao = new Funcionario();
-        Funcionario rolph = new Funcionario();
-        Funcionario paulo = new Funcionario();
-        Funcionario chris = new Funcionario();
-        americanas.funcionario = joao;
-        americanas.funcionario = rolph;
-        americanas.funcionario = chris;
-        americanas.funcionario = paulo;
-        Pedido p1 = new Pedido(1, 3, 2);
-        Pedido p2 = new Pedido(2, 4, 5);
-        Pedido p3 = new Pedido(3, 3, 7);
-        americanas.inserirPedido(1, p1.pedidoID);
-        americanas.inserirPedido(2, p2.pedidoID);
-        americanas.inserirPedido(45, p3.pedidoID);
+        Pedido p1 = new Pedido();
+        p1.inserirItem("Melancia", 1);
+        p1.inserirItem("Kiwi", 5);
+        p1.inserirItem("Goiaba", 3);
+        p1.buscarItem("Melancia");
+        p1.buscarItem("Kiwi");
+        p1.removerItem("Goiaba");
+        p1.trocarQtd("Melancia", 2);
+        p1.buscarQtd("Melancia");
+        p1.verLista();
+        p1.limparLista();
+        Pedido p2 = new Pedido();
+        Pedido p3 = new Pedido();
+        Pedido p4 = new Pedido();
+        
+        Loja americanas = new Loja(); 
+        americanas.inserirPedido(1, p1);
+        americanas.inserirPedido(2, p2);
+        americanas.inserirPedido(3, p3);
+        americanas.verLista();
+        americanas.trocarPedido(2, p4);
+        americanas.verLista();
+        americanas.limparLista();
     }
 }
