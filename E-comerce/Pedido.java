@@ -57,8 +57,4 @@ public class Pedido {
     public void limparLista() {
         listaItem.clear();
     }
-    
-    /*public void valorItem(){}
-    public void totalItem() {}
-    public void totalCalculado() {}*/
 }
