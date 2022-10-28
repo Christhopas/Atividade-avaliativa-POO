@@ -13,6 +13,8 @@ public class Oraculo {
     Icon icO = new ImageIcon("oraculo.png");
     Icon icV = new ImageIcon("trofeu.png");
     Icon icP = new ImageIcon("game_over.png");
+    
+    Scanner t = new Scanner(System.in);
 
     Random g = new Random();
 
@@ -31,10 +33,9 @@ public class Oraculo {
 
     //Levels
     public int loadLevel1() {
-        Scanner t = new Scanner(System.in);
 
         System.out.println("#### Level 1 ###");
-        System.out.println("Advinhe um número...");
+        System.out.println("Advinhe um numero...");
 
         int n = t.nextInt();
         int s = g.nextInt(100) + 1; //[1,99]
@@ -70,24 +71,23 @@ public class Oraculo {
 
     public int loadLevel2(int o) {
         
-        if (o != 0 && o != 1) {
+        do {
             MsgDeErro("Valor invalido", "Digite 0[par] ou 1[impar].");
-        }
-        else {
-            System.out.println("#### Level 2 ###");
+            System.out.println("Digite novamente: ");
+            o = t.nextInt();
+        } while(o != 0 && o != 1);
+
+        System.out.println("#### Level 2 ###");
             
-            int n1 = g.nextInt(6);
-            int n2 = g.nextInt(6);
-            int soma = n1 + n2;
+        int n1 = g.nextInt(6);
+        int n2 = g.nextInt(6);
+        int soma = n1 + n2;
             
-            System.out.println("n1: "+n1+" + "+"n2: "+n2+" = "+soma);
-            if (soma % 2 == o) {
-            	prologoVencedor();
-            }
-            else {
-                prologoPerdedor();
-            }
-        }
+        System.out.println("n1: "+n1+" + "+"n2: "+n2+" = "+soma);
+        if (soma % 2 == o)
+            prologoVencedor();
+        else
+            prologoPerdedor();
         return 0;
     }
     
